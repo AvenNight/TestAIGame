@@ -9,19 +9,19 @@ public class ExitScript : MonoBehaviour
 
     private List<GameObject> players;
 
-    private float activeteDistance => 1f;
-    public float distanseToPlayer => player.GetDistanceTo(this.gameObject);
+    private float activateDistance => 1f;
+    public float distanceToPlayer => player.GetDistanceTo(this.gameObject);
     private bool allPlayersOnExit
     {
         get
         {
-            var result = players.All(p => p.GetDistanceTo(this.gameObject) <= activeteDistance);
+            var result = players.All(p => p.GetDistanceTo(this.gameObject) <= activateDistance);
             return result;
         }
     }
 
-    private bool levelComplite = false;
-    public bool LevelComplite => levelComplite;
+    private bool levelComplete = false;
+    public bool LevelComplite => levelComplete;
 
     void Start()
     {
@@ -32,9 +32,9 @@ public class ExitScript : MonoBehaviour
 
     void Update()
     {
-        if (allPlayersOnExit && !levelComplite)
+        if (allPlayersOnExit && !levelComplete)
         {
-            levelComplite = true;
+            levelComplete = true;
             Debug.Log("FINISH");
         }
     }
