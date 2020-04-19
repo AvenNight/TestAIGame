@@ -1,5 +1,7 @@
 .vs/
 Logs/
 obj/
+Library/
+Temp/
 Assembly-CSharp.csproj
 Assembly-CSharp-Editor.csproj
