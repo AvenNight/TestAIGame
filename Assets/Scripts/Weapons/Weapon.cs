@@ -8,28 +8,15 @@ public abstract class Weapon : MonoBehaviour
     public int AttackPower { get; set; }
     public int Damage => Random.Range(1, AttackPower * 2);
     public float DelaySec { get; set; }
-    private bool coroutineActive;
-    private Coroutine coroutine;
 
-    private void FixedUpdate()
-    {
-        if (isAttack && !coroutineActive)
-        {
-            coroutineActive = true;
-            coroutine = StartCoroutine(AttackActive());
-        }
-        else if (!isAttack && coroutineActive)
-        {
-            coroutineActive = false;
-            StopCoroutine(coroutine);
-        }
-    }
+    private void Start() => StartCoroutine(AttackActive());
 
     IEnumerator AttackActive()
     {
         while (true)
         {
-            Attack();
+            if (isAttack)
+                Attack();
             yield return new WaitForSeconds(DelaySec);
         }
     }

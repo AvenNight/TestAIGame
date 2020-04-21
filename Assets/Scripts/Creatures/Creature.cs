@@ -41,11 +41,6 @@ public abstract class Creature : MonoBehaviour, IDamaged
         agent.speed = speed;
     }
 
-    private void LateUpdate()
-    {
-        if (Hp <= 0) Destroy(this.gameObject, 0.1f);
-    }
-
     public void TakeDamage(int damage)
     {
         var inputDamage = damage;
@@ -53,6 +48,7 @@ public abstract class Creature : MonoBehaviour, IDamaged
         damage = (int)Math.Round(damage - damage * reducePercent, 0);
         Hp -= damage;
         Debug.Log($"{this.tag} taken {damage} damage (reduced {inputDamage - damage})");
+        if (Hp <= 0) Destroy(this.gameObject, 0.1f);
     }
 
     private void OnDestroy() => DeathNotify?.Invoke();
